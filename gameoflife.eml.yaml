@@ -1,0 +1,37 @@
+Solution: Game Of Life
+Contexts:
+- Name: Game Of Life
+  Streams:
+  - Stream: game
+    Commands:
+    - Command:
+        ID: Play
+        Name: Play
+        Parameters:
+        - Name: gameId
+          Type: string
+          IsRequired: true
+        - Name: grid
+          Type: string
+          IsRequired: false
+        Postconditions:
+        - GameUpdated
+    Events:
+    - Event:
+        ID: GameUpdated
+        Name: Game Updated
+        Properties:
+        - Name: gameId
+          Type: string
+          IsEncrypted: false
+        - Name: grid
+          Type: string
+          IsEncrypted: false
+  Readmodels:
+  - Readmodel:
+      ID: Grid
+      Name: Grid
+      Key: gameId
+      SubscribesTo:
+      - GameUpdated
+Errors: []
