@@ -1,12 +1,13 @@
 package infra
 
 import (
+	"log"
+	"net/http"
+	"net/url"
+	"os"
+
 	"github.com/jdextraze/go-gesclient"
 	"github.com/jdextraze/go-gesclient/client"
-	"net/url"
-	"log"
-	"os"
-	"net/http"
 )
 
 func (i *Infra) Run() error {
@@ -31,7 +32,7 @@ func (i *Infra) Run() error {
 		log.Fatalf("Error creating connection for GES: %s", err.Error())
 	}
 
-	i.conn.Closed().Add(func (event client.Event) error {
+	i.conn.Closed().Add(func(event client.Event) error {
 		log.Println("Connection to GES lost, shutting down app.")
 		os.Exit(0)
 		return nil
@@ -44,7 +45,7 @@ func (i *Infra) Run() error {
 
 	http.Handle("/api/v1/r/", i.NewGenericReadModelsHandler())
 
-	i.registerRoutes(i.HandleCommand)s
+	i.registerRoutes(i.HandleCommand)
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatalf("Error starting web server: %s", err.Error())
