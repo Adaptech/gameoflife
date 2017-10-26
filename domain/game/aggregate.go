@@ -28,6 +28,9 @@ func (a Game) Execute(command interface{}) ([]interface{}, error) {
 	if cmd, ok := command.(*commands.Play); ok {
 		return a.Play(cmd)
 	}
+	if cmd, ok := command.(*commands.Next); ok {
+		return a.Next(cmd)
+	}
 
 	//TODO reflect command name?
 	return nil, errors.New("unknown command for Game")
@@ -42,6 +45,15 @@ func (a *Game) Play(command *commands.Play) ([]interface{}, error) {
 	result = append(result, &events.GameUpdated{
 		GameId: command.GameId,
 		Grid:   command.Grid,
+	})
+	return result, nil
+}
+
+func (a *Game) Next(command *commands.Next) ([]interface{}, error) {
+	var result []interface{}
+	result = append(result, &events.GameUpdated{
+		GameId: command.GameId,
+		Grid:   a.Grid,
 	})
 	return result, nil
 }
