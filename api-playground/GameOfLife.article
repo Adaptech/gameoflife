@@ -1,0 +1,56 @@
+Game Of Life API
+
+http://Adaptechsolutions.net
+
+
+* Bounded Context / Service: Game Of Life
+
+
+
+*Commands:*
+
+
+
+- Play( gameId, grid )
+
+
+*Events:*
+
+
+- Game Updated( gameId, grid )
+
+
+
+*Read* *Models:*
+
+- Grid
+
+
+
+
+
+
+
+** Game: Play
+
+.play -edit curls/game-cmd-play.sh
+
+*Result:*
+
+
+- GameUpdated
+
+
+
+
+
+** Readmodel: Grid
+
+.play -edit curls/gameoflife-r-grid.sh
+  
+Key: gameId
+
+Subscribes to:
+
+- GameUpdated
+

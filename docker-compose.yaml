@@ -1,6 +1,6 @@
 version: '3.2'
 services:
-  api-server: 
+  api: 
     build: .
     ports:
       - "3001:3001"
@@ -13,9 +13,14 @@ services:
       - ./../../..:/go/src 
 
   eventstore:
-     image: tetsuobe/geteventstore
-     ports:
+    image: tetsuobe/geteventstore
+    ports:
       - "1113:1113"
       - "2113:2113"
 
-
+  api-playground:
+    build: ./api-playground/.
+    ports:
+      - "3999:3999"
+    depends_on:
+      - api
