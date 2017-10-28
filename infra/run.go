@@ -24,8 +24,7 @@ func (i *Infra) Run() error {
 		i.userCredentials = client.NewUserCredentials("admin", "changeit")
 	}
 
-	//TODO config
-	gesAddr := "tcp://localhost:1113"
+	gesAddr := "tcp://eventstore:1113"
 	if uri, err := url.Parse(gesAddr); err != nil {
 		log.Fatalf("Wrong format for GES Address: %s", err.Error())
 	} else if i.conn, err = gesclient.Create(nil, uri, "conn"); err != nil {
@@ -38,7 +37,7 @@ func (i *Infra) Run() error {
 		return nil
 	})
 
-	log.Println("Connecting to GES at", gesAddr)
+	log.Println("Connecting to GES at ", gesAddr)
 	if err := i.conn.ConnectAsync().Wait(); err != nil {
 		log.Fatalf("Error connecting to GES: %s", err.Error())
 	}
@@ -47,7 +46,7 @@ func (i *Infra) Run() error {
 
 	i.registerRoutes(i.HandleCommand)
 
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	if err := http.ListenAndServe(":3001", nil); err != nil {
 		log.Fatalf("Error starting web server: %s", err.Error())
 	}
 
