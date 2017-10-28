@@ -9,7 +9,7 @@ go get
 docker-compose up
 ```
 
-Mounts current directory as docker volumes. Builds and hot-reloads in container when .go files are modified.
+Mounts current directory as docker volume. Builds and hot-reloads in container when .go files are modified.
 
 ## Try:
 
