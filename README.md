@@ -4,7 +4,12 @@ Incomplete example from https://www.meetup.com/DDD-CQRS-ES/events/243795846/
 
 ## Run:
 
-```docker-compose up```
+```
+go get
+docker-compose up
+```
+
+Mounts current directory as docker volumes. Builds and hot-reloads in container when .go files are modified.
 
 ## Try:
 
