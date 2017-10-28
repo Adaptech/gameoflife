@@ -18,7 +18,7 @@ Incomplete example from https://www.meetup.com/DDD-CQRS-ES/events/243795846/
 
 ## See the events in the event store:
 
-```http://localhost:2113/web/index.html#/streams/Game-gameId-1```
+http://localhost:2113/web/index.html#/streams/Game-gameId-1
 
 Log in with username "admin", password "changeit".
 
